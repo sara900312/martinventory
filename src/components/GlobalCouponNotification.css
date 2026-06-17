@@ -1,0 +1,323 @@
+/* Global Coupon Notification Container */
+.global-coupon-notification-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Notification Banner Base */
+.global-coupon-notification {
+  pointer-events: auto;
+  animation: slideDownFade 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+/* Active Coupon Notification */
+.global-coupon-notification.active-coupon {
+  background: linear-gradient(135deg, #f0fff4 0%, #f0faf8 100%);
+  border-bottom: 2px solid #4ade80;
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.global-coupon-notification.active-coupon:hover {
+  box-shadow: 0 8px 24px rgba(74, 222, 128, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: translateY(1px);
+}
+
+/* Coupon Notification Content */
+.coupon-notification-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Coupon Notification Icon */
+.coupon-notification-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.coupon-notification-icon-expired {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fee;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.icon-size {
+  width: 18px;
+  height: 18px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.icon-size-close {
+  width: 20px;
+  height: 20px;
+}
+
+/* Coupon Notification Text */
+.coupon-notification-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.coupon-notification-text-expired {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.coupon-notification-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #059669;
+  display: block;
+  white-space: nowrap;
+}
+
+.coupon-notification-title-expired {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #7f1d1d;
+  display: block;
+}
+
+.coupon-notification-message-expired {
+  font-size: 0.8rem;
+  color: #991b1b;
+  font-weight: 500;
+}
+
+.coupon-notification-code {
+  font-size: 0.8rem;
+  color: #047857;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+/* Coupon Notification Timer */
+.coupon-notification-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.timer-text {
+  font-size: 0.8rem;
+  color: #047857;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.timer-value {
+  font-weight: 800;
+  color: #10b981;
+  font-family: 'Courier New', monospace;
+  display: inline-block;
+  min-width: 45px;
+  font-size: 0.9rem;
+}
+
+/* Global Progress Bar */
+.timer-progress-bar-global {
+  width: 120px;
+  height: 6px;
+  background-color: rgba(16, 185, 129, 0.15);
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.timer-progress-fill-global {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 50%, #047857 100%);
+  transition: width 1s linear;
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+@keyframes timerPulseGlobal {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
+  }
+}
+
+.timer-progress-fill-global {
+  animation: timerPulseGlobal 2s ease-in-out infinite;
+}
+
+
+/* Expired Coupon Notification */
+.global-coupon-notification.expired-coupon {
+  background: linear-gradient(135deg, #fef0f0 0%, #fef5f5 100%);
+  border-bottom: 2px solid #fca5a5;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  animation: slideDownFade 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), slideUpFade 0.4s ease-in 2s forwards;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .global-coupon-notification.active-coupon {
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .coupon-notification-content {
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .coupon-notification-timer {
+    width: 100%;
+    min-width: unset;
+    flex-shrink: unset;
+    order: 3;
+    margin-top: 0.5rem;
+  }
+
+  .coupon-notification-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .global-coupon-notification.expired-coupon {
+    padding: 0.75rem 1rem;
+  }
+
+  .coupon-notification-text {
+    flex: 1;
+  }
+
+  .coupon-notification-text-expired {
+    flex: 1;
+  }
+
+  .timer-progress-bar-global {
+    width: 100%;
+    height: 5px;
+  }
+
+  .timer-text {
+    font-size: 0.75rem;
+  }
+
+  .coupon-notification-title {
+    font-size: 0.9rem;
+  }
+
+  .coupon-notification-title-expired {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .global-coupon-notification.active-coupon {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .coupon-notification-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .coupon-notification-timer {
+    display: none;
+  }
+
+  .coupon-notification-text {
+    gap: 0.125rem;
+  }
+
+  .coupon-notification-title {
+    font-size: 0.85rem;
+  }
+
+  .coupon-notification-code {
+    font-size: 0.75rem;
+  }
+
+  .coupon-notification-close {
+    width: 28px;
+    height: 28px;
+  }
+
+  .global-coupon-notification.expired-coupon {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .coupon-notification-title-expired {
+    font-size: 0.85rem;
+  }
+
+  .coupon-notification-message-expired {
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,78 @@
+.animated-hero-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70px;
+  width: 100%;
+  overflow: visible;
+}
+
+.animated-hero-title-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.animated-hero-title {
+  font-weight: bold;
+  text-align: center;
+  margin: 0;
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  letter-spacing: 0.3px;
+  line-height: 1.4;
+  overflow: visible;
+}
+
+.animated-hero-text {
+  position: absolute;
+  white-space: nowrap;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+  will-change: clip-path;
+  line-height: 1.4;
+  padding: 4px 0;
+}
+
+/* Opening animation - doors open from center */
+@keyframes door-open {
+  0% {
+    clip-path: polygon(50% 0, 50% 100%, 50% 100%, 50% 0);
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+    opacity: 1;
+  }
+}
+
+/* Closing animation - doors close from sides */
+@keyframes door-close {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    clip-path: polygon(50% 0, 50% 100%, 50% 100%, 50% 0);
+    opacity: 0;
+  }
+}
+
+.animated-hero-text.active {
+  animation: door-open 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  z-index: 10;
+}
+
+.animated-hero-text.inactive {
+  animation: door-close 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  z-index: 5;
+}
